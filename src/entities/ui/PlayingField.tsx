@@ -1,12 +1,14 @@
 import Box from "@mui/material/Box";
 import {Cell} from "../../shared";
 import {useState} from "react";
+import IconSwitcher from "./IconSwitcher.tsx";
+
 
 interface playingFieldProps {
     fieldSize: number;
     cellSize: number;
     clickOnCell: (e: React.MouseEvent<HTMLButtonElement>) => void | string;
-    checkGame: (gameState: unknown[]) => void;
+    checkGame: (gameState: Array<string>) => void;
 }
 
 const PlayingField = (props: playingFieldProps) => {
@@ -17,13 +19,17 @@ const PlayingField = (props: playingFieldProps) => {
         clickOnCell
     } = props;
 
-    const [gameState, _] = useState(Array.from({ length: fieldSize * fieldSize }));
+    const [gameState, setGameState] = useState<Array<string>>(Array.from({ length: fieldSize * fieldSize }));
 
 
     const clickOnCellHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
         const value = clickOnCell(e);
-        if (value) gameState[e.target.id] = value;
-        checkGame(gameState);
+        if (value) setGameState(prevState => {
+            const newState = [...prevState];
+            newState[Number((e.target as Element).id)] = value;
+            checkGame(newState);
+            return newState;
+        });
     }
 
     return (
@@ -40,6 +46,7 @@ const PlayingField = (props: playingFieldProps) => {
                     size={cellSize}
                     onClick={clickOnCellHandler}
                 >
+                    {gameState[index] && <IconSwitcher size={cellSize} key={index} caseStr={gameState[index]}/>}
                 </Cell>
             ))}
         </Box>

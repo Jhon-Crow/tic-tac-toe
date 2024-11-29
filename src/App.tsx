@@ -3,7 +3,7 @@ import {TicTacToeField} from "./wigets";
 function App() {
   return (
     <>
-        <TicTacToeField fieldSize={4}/>
+        <TicTacToeField fieldSize={3} cellRelativeSize={200}/>
     </>
   )
 }

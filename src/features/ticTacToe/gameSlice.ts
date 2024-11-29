@@ -1,21 +1,19 @@
 function addXOrOFactory(){
-    var prev;
+    var prev: number | string;
     return function addSomthing(e: React.MouseEvent<HTMLButtonElement>) {
-        if(!e.currentTarget.innerText){
-            e.currentTarget.innerText = prev ? 0 : 'x';
             prev = prev ? 0 : 'x';
             e.currentTarget.disabled = true;
             return String(prev);
-        }
     };
 }
 
 export const addXOrO = addXOrOFactory();
 
-export function checkGame(gameState){
+export function checkGame(gameState: Array<string>){
+    console.log(gameState)
     const size = Math.sqrt(gameState.length);
 
-    function recHorCheck(i){
+    function recHorCheck(i: number){
         if(gameState[i] === gameState[i+1]) {
             const full = !((i+2) % size);
             if (full) {
@@ -25,7 +23,7 @@ export function checkGame(gameState){
         }
     }
 
-    function recVertCheck(i){
+    function recVertCheck(i: number){
         if (gameState[i]){
             if (gameState[i] === gameState[i + size]) {
                 const full = (i / size) >= 2;
@@ -40,7 +38,7 @@ export function checkGame(gameState){
         }
     }
 
-    function recBaseDeagtCheck(i){
+    function recBaseDeagtCheck(i: number){
         if (i === gameState.length - 1) {
 
             return gameState[i];
@@ -50,14 +48,14 @@ export function checkGame(gameState){
         }
     }
 
-    function recLasrDeagtCheck(i){
+    function recLastDeagtCheck(i: number){
         const full = (size * size) - size;
         if (full === i){
             return gameState[i];
         }
 
         if (gameState[i] === gameState[i + size - 1]){
-            recLasrDeagtCheck((i + size - 1));
+            recLastDeagtCheck((i + size - 1));
         }
     }
 
@@ -72,11 +70,11 @@ export function checkGame(gameState){
             recBaseDeagtCheck(0);
         }
         if (gameState[size-1] && (gameState[size-1] === gameState[size * (size - 1)])){
-            recLasrDeagtCheck(size - 1);
+            recLastDeagtCheck(size - 1);
         }
     }
 
-    if (gameState.length === gameState.filter(item => item !== undefined).length){
+    if (gameState.length === gameState.filter((item: string) => item !== undefined).length){
         console.log('end')
         return false;
     }

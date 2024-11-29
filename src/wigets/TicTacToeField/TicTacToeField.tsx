@@ -3,11 +3,12 @@ import {addXOrO, checkGame} from "../../features";
 
 interface TicTacToeFieldProps {
     fieldSize: number;
+    cellRelativeSize: number;
 }
 
 const TicTacToeField = (props:TicTacToeFieldProps) => {
-    const {fieldSize} = props;
-    const cellSize = 200 / (fieldSize / 3);
+    const {fieldSize, cellRelativeSize } = props;
+    const cellSize = cellRelativeSize / (fieldSize / 3);
 
     return (
         <PlayingField checkGame={checkGame} fieldSize={fieldSize} cellSize={cellSize} clickOnCell={addXOrO}/>
