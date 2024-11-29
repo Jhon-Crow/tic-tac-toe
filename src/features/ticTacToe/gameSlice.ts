@@ -10,7 +10,6 @@ function addXOrOFactory(){
 export const addXOrO = addXOrOFactory();
 
 export function checkGame(gameState: Array<string>){
-    console.log(gameState)
     const size = Math.sqrt(gameState.length);
 
     function recHorCheck(i: number){
@@ -26,7 +25,7 @@ export function checkGame(gameState: Array<string>){
     function recVertCheck(i: number){
         if (gameState[i]){
             if (gameState[i] === gameState[i + size]) {
-                const full = (i / size) >= 2;
+                const full = (i + size) >= (size**2) - size;
                 if (full) {
                     return gameState[i];
                 }
@@ -40,12 +39,12 @@ export function checkGame(gameState: Array<string>){
 
     function recBaseDeagtCheck(i: number){
         if (i === gameState.length - 1) {
-
             return gameState[i];
         }
         if (gameState[i] === gameState[i + 1 + size]){
             recBaseDeagtCheck(i + 1 + size);
         }
+        return;
     }
 
     function recLastDeagtCheck(i: number){
@@ -53,10 +52,10 @@ export function checkGame(gameState: Array<string>){
         if (full === i){
             return gameState[i];
         }
-
         if (gameState[i] === gameState[i + size - 1]){
             recLastDeagtCheck((i + size - 1));
         }
+        return;
     }
 
     for (let i = 0; i < gameState.length; i++) {
