@@ -1,10 +1,14 @@
-import {TicTacToeField} from "./wigets";
+import Main from "./pages/Main.tsx";
+import Box from "@mui/material/Box";
 
 function App() {
   return (
-    <>
-        <TicTacToeField fieldSize={3} cellRelativeSize={200}/>
-    </>
+      <Box
+          display="flex"
+          justifyContent={'center'}
+      >
+        <Main/>
+      </Box>
   )
 }
 
