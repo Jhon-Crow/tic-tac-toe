@@ -4,6 +4,7 @@ import ButtonBase from '@mui/material/ButtonBase';
 import {ReactNode} from "react";
 
 interface cellProps {
+    id: string;
     color: string;
     size: number;
     children?: ReactNode;
@@ -13,6 +14,7 @@ interface cellProps {
 
 function Cell(props: cellProps) {
     const {
+        id,
         color,
         size,
         children,
@@ -47,6 +49,7 @@ function Cell(props: cellProps) {
                         backgroundColor: color,
                     }}
                     onClick={onClickHandler}
+                    id={id}
                 >
                     {children}
                 </ColorBox>
