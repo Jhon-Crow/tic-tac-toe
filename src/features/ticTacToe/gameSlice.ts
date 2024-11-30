@@ -1,8 +1,8 @@
 function addXOrOFactory(){
     var prev: number | string;
     return function addSomthing(e: React.MouseEvent<HTMLButtonElement>) {
+        if (e.currentTarget.firstChild!.nodeName === 'svg') return;
             prev = prev ? 0 : 'x';
-            e.currentTarget.disabled = true;
             return String(prev);
     };
 }
@@ -77,7 +77,7 @@ export function checkGame(gameState: Array<string>) {
     }
 
     if (gameState.length === gameState.filter((item: string) => item !== undefined).length) {
-        return 'draw';
+        return 'Ничья!';
     }
 
     return;

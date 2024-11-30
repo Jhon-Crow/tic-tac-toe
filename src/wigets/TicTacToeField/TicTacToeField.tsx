@@ -3,7 +3,6 @@ import {addXOrO, checkGame} from "../../features";
 
 interface TicTacToeFieldProps {
     fieldSize: number;
-    setIsOpenModal?: (arg: boolean) => void;
     cellRelativeSize: number;
 }
 
@@ -11,17 +10,17 @@ const TicTacToeField = (props:TicTacToeFieldProps) => {
     const {
         fieldSize,
         cellRelativeSize,
-        setIsOpenModal
     } = props;
     const cellSize = cellRelativeSize / (fieldSize / 3);
 
     return (
         <PlayingField
-            setIsOpenModal={setIsOpenModal}
+            withModal={true}
             checkGame={checkGame}
             fieldSize={fieldSize}
             cellSize={cellSize}
             clickOnCell={addXOrO}
+        /*    todo функ. для взаим с апи */
         />
     );
 };
