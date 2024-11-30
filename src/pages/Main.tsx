@@ -3,7 +3,7 @@ import {TicTacToeField} from "../wigets";
 import {useState} from "react";
 
 const Main = () => {
-    const [isOpen, setIsOpen] = useState<boolean>(true);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const onAcceptCallback = () => {
     //todo
@@ -15,7 +15,7 @@ const Main = () => {
     return (
         <main>
             <Dialogue onAcceptCallback={onAcceptCallback} setIsOpen={setIsOpen} isOpen={isOpen} header={'Начать сначала?'}/>
-            <TicTacToeField fieldSize={3} cellRelativeSize={200}/>
+            <TicTacToeField setIsOpenModal={setIsOpen} fieldSize={3} cellRelativeSize={200}/>
         </main>
     );
 };

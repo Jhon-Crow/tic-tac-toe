@@ -8,7 +8,8 @@ interface playingFieldProps {
     fieldSize: number;
     cellSize: number;
     clickOnCell: (e: React.MouseEvent<HTMLButtonElement>) => void | string;
-    checkGame: (gameState: Array<string>) => void;
+    checkGame: (gameState: Array<string>) => string | undefined;
+    setIsOpenModal?: (arg: boolean) => void;
 }
 
 const PlayingField = (props: playingFieldProps) => {
@@ -16,7 +17,8 @@ const PlayingField = (props: playingFieldProps) => {
         fieldSize,
         cellSize,
         checkGame,
-        clickOnCell
+        clickOnCell,
+        setIsOpenModal
     } = props;
 
     const [gameState, setGameState] = useState<Array<string>>(Array.from({ length: fieldSize * fieldSize }));
@@ -27,7 +29,11 @@ const PlayingField = (props: playingFieldProps) => {
         if (value) setGameState(prevState => {
             const newState = [...prevState];
             newState[Number((e.target as Element).id)] = value;
-            checkGame(newState);
+            const result = checkGame(newState);
+            if (setIsOpenModal && result){
+                setIsOpenModal(true);
+            }
+
             return newState;
         });
     }

@@ -23,7 +23,6 @@ const Dialogue = memo((props: ModalProps) => {
 
     return (
         <Dialog
-            // onClose={closeDialogue}
             open={isOpen}
             maxWidth="xs"
             fullWidth={true}
@@ -38,14 +37,6 @@ const Dialogue = memo((props: ModalProps) => {
                 >
                     Ok
                 </Button>
-                {/*<Button*/}
-                {/*    size="medium"*/}
-                {/*    variant="outlined"*/}
-                {/*    color="error"*/}
-                {/*    onClick={closeDialogue}*/}
-                {/*>*/}
-                {/*    cancel*/}
-                {/*</Button>*/}
             </DialogActions>
         </Dialog>
     );
