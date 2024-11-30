@@ -10,6 +10,7 @@ interface playingFieldProps {
     clickOnCell: (e: React.MouseEvent<HTMLButtonElement>) => void | string;
     checkGame: (gameState: Array<string>) => string | undefined;
     withModal?: boolean;
+    sendToServer?: (result: string) => void;
 }
 
 const PlayingField = (props: playingFieldProps) => {
@@ -19,6 +20,7 @@ const PlayingField = (props: playingFieldProps) => {
         cellSize,
         checkGame,
         clickOnCell,
+        sendToServer
     } = props;
 
     const [gameState, setGameState] = useState<Array<string>>(Array.from({ length: fieldSize * fieldSize }));
@@ -31,6 +33,7 @@ const PlayingField = (props: playingFieldProps) => {
             const newState = [...prevState];
             newState[Number((e.target as Element).id)] = value;
             const result = checkGame(newState);
+            if (result && sendToServer) sendToServer(result);
             if (withModal && result){
                 setModalHeader(result === 'Ничья!' ? 'Ничья!' : `${result.toUpperCase()} выиграл!`);
                 setIsOpen(true);
@@ -39,22 +42,12 @@ const PlayingField = (props: playingFieldProps) => {
                     () => setGameState(Array.from({ length: fieldSize * fieldSize })), 3000
                 )
             }
-            // TODO sand date func from props
-            // if (setIsOpenModal && result){
-            //     setIsOpenModal(true);
-            // }
-
             return newState;
         });
     }
 
     const onAcceptCallback = () => {
         setGameState(Array.from({ length: fieldSize * fieldSize }));
-
-        //todo
-        // обращение к апи для сохранения истории
-        // очищать стэйт
-        // добавить открытие модалки с результатом при завершении партии
     }
 
     return (

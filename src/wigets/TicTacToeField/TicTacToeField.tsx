@@ -1,5 +1,6 @@
 import {PlayingField} from "../../entities";
-import {addXOrO, checkGame} from "../../features";
+import {addXOrO, checkGame, sendData} from "../../features";
+
 
 interface TicTacToeFieldProps {
     fieldSize: number;
@@ -20,7 +21,7 @@ const TicTacToeField = (props:TicTacToeFieldProps) => {
             fieldSize={fieldSize}
             cellSize={cellSize}
             clickOnCell={addXOrO}
-        /*    todo функ. для взаим с апи */
+            sendToServer={sendData}
         />
     );
 };
