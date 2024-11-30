@@ -1,8 +1,7 @@
 import Box from "@mui/material/Box";
-import {Cell} from "../../shared";
+import {Cell, Dialogue} from "../../shared";
 import {useState} from "react";
 import IconSwitcher from "./IconSwitcher.tsx";
-import Dialogue from "../../shared/ui/Dialogue.tsx";
 
 
 interface playingFieldProps {
