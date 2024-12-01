@@ -17,8 +17,10 @@ const HistoryList = ({state}: HistoryListProps) => {
         <List sx={{
             width: '100%',
             bgcolor: 'lightgray',
-            maxHeight: '400px',
-            overflowY: 'auto'
+            maxHeight: '280px',
+            overflowY: 'auto',
+            display: 'flex',
+            flexDirection: 'column-reverse'
         }}>
             {state && state.map(({date, cross, circle}, index) => {
                     return (<ListItem key={date + index} sx={{border: '1px solid grey'}}>

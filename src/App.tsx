@@ -7,6 +7,7 @@ function App() {
       <Box
           display="flex"
           justifyContent={'center'}
+          width={'100%'}
       >
         <Main/>
       </Box>
