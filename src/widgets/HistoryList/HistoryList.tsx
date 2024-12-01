@@ -1,32 +1,17 @@
-import {fetchHistory} from "../../features";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemText from "@mui/material/ListItemText";
 import O from "../../shared/assets/icons/components/o.tsx";
 import X from "../../shared/assets/icons/components/x.tsx";
-import {useEffect, useState} from "react";
+import { dataItem } from "../../pages/Main.tsx";
 
-interface dataItem {
-    cross: boolean,
-    circle: boolean,
-    date: string
+
+interface HistoryListProps {
+    state?: dataItem[];
 }
 
-const HistoryList = () => {
-    const [state, setState] = useState<Array<dataItem>>();
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const data = await fetchHistory();
-                setState(data);
-            } catch (error) {
-                console.error('Ошибка при получении данных:', error);
-            }
-        };
-        fetchData();
-    }, []);
+const HistoryList = ({state}: HistoryListProps) => {
 
     return (
         <List sx={{
