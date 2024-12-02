@@ -1,13 +1,16 @@
-import {PlayingField} from "./entities";
+import Main from "./pages/Main.tsx";
+import Box from "@mui/material/Box";
 
 function App() {
 
-    const logIt = (e: React.MouseEvent<HTMLButtonElement>) => console.log(e.target)
-
   return (
-    <>
-        <PlayingField clickOnCell={logIt} cellSize={200} fieldSize={3}/>
-    </>
+      <Box
+          display="flex"
+          justifyContent={'center'}
+          width={'100%'}
+      >
+        <Main/>
+      </Box>
   )
 }
 
