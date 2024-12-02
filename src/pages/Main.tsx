@@ -1,7 +1,7 @@
 import { Suspense, useCallback, useEffect, useState } from "react";
 import {HistoryList, TicTacToeField} from "../widgets";
 import { fetchHistory } from "../features";
-
+import { isMobile } from 'react-device-detect';
 
 export interface dataItem {
     cross: boolean,
@@ -24,9 +24,12 @@ const Main = () => {
     useEffect(() => {
         fetchHistoryApi()
     }, [fetchHistoryApi])
+
+    const size = isMobile ? 90 : 200;
+
     return (
         <main>
-            <TicTacToeField addToHistory={addToHistory} fieldSize={3} cellRelativeSize={200}/>
+            <TicTacToeField addToHistory={addToHistory} fieldSize={3} cellRelativeSize={size}/>
             <Suspense fallback="Загрузка...">
                 <HistoryList state={state}/>
             </Suspense>
