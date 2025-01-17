@@ -32,7 +32,7 @@ const HistoryList = ({ state }: HistoryListProps) => {
                 flexDirection: 'column-reverse',
             }}
         >
-            {state && state.map(({ date, cross, circle }, index) => (
+            {state?.length && state.map(({ date, cross, circle }, index) => (
                 <ListItem key={date + index} sx={{ border: '1px solid grey' }}>
                     <ListItemAvatar>
                         {cross && <X height={20} width={20} />}

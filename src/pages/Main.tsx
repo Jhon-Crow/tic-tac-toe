@@ -17,7 +17,7 @@ const Main = () => {
     }, [setState]);
 
     const addToHistory = useCallback((dataItem: dataItem) => {
-        setState(prev => [...prev, dataItem]);
+        setState(prev => prev.length ? [...prev, dataItem] : [dataItem]);
     }, [setState])
 
 
